@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Life Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="game-wrapper">
+    <canvas class='gameField'></canvas>
+    <div class="control-layout">
+        <div class="game-info">
+            <p>Поколение</p>
+            <p class="count">1</p>
+            <p>Скорость</p>
+            <p class="speed">1</p>
+        </div>
+        <div class="control-panel">
+            <button class="control-button button-add">Доселить</button>
+            <button class="control-button button-start">Играть</button>
+            <button class="control-button button-pause" disabled>Пауза</button>
+            <button class="control-button button-reset" disabled>Завершить</button>
+            <button class="control-button button-speed-up" disabled>Быстрее</button>
+            <button class="control-button button-speed-down" disabled>Медленнее</button>
+        </div>
+    </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

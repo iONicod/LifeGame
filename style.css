@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    letter-spacing: 3px;
+}
+
+.game-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.gameField {
+    display: inline-block;
+    border: 2px solid black;
+    margin: 20px;
+    height: 100%;
+}
+
+.control-layout {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 100px;
+}
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.control-button {
+    padding: 15px 5px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.control-button:disabled {
+    display: none;
+}
+
+.control-button:active {
+    opacity: 0.95;
+}
+
+.button-add {
+    background-color: seagreen;
+}
+
+.button-start {
+    background-color: royalblue;
+}
+
+.button-pause,
+.button-reset {
+    background-color: lightslategray;
+}
+
+.button-speed-up,
+.button-speed-down {
+    background-color: royalblue;
+}
+
+
+.game-info {
+    margin: 5px;
+    font-size: 24px;
+}
+
+.speed,
+.count {
+    font-size: 52px;
+    color: royalblue;
+    font-weight: bold;
+    margin: 5px 5px;
+}
