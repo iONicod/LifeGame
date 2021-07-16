@@ -8,8 +8,8 @@ class ControlButtons {
     btnReset: HTMLInputElement;
     btnSpeedUp: HTMLInputElement;
     btnSpeedDown: HTMLInputElement;
-    protected game: Game;
-    protected controlPopulation: ControlPopulation;
+    protected _game: Game;
+    protected _controlPopulation: ControlPopulation;
 
     constructor(game: Game, controlPopulation : ControlPopulation) {
         this.btnPause =  document.querySelector(".button-pause");
@@ -18,8 +18,8 @@ class ControlButtons {
         this.btnAddLives = document.querySelector(".button-add");
         this.btnSpeedUp = document.querySelector(".button-speed-up");
         this.btnSpeedDown = document.querySelector(".button-speed-down");
-        this.game = game;
-        this.controlPopulation = controlPopulation;
+        this._game = game;
+        this._controlPopulation = controlPopulation;
         this.init();
     }
 
@@ -30,22 +30,22 @@ class ControlButtons {
         this.btnSpeedDown.disabled = true;
 
         this.btnStart.addEventListener("click", () => {
-            this.game.start();
+            this._game.start();
         });
         this.btnPause.addEventListener("click", () => {
-            this.game.pause();
+            this._game.pause();
         });
         this.btnReset.addEventListener("click", () => {
-            this.game.reset();
+            this._game.reset();
         });
         this.btnAddLives.addEventListener("click", () => {
-            this.game.addLives(100);
+            this._game.addLives(100);
         });
         this.btnSpeedUp.addEventListener("click", () => {
-            this.controlPopulation.increaseSpeed();
+            this._controlPopulation.increaseSpeed();
         });
         this.btnSpeedDown.addEventListener("click", () => {
-            this.controlPopulation.lowerSpeed();
+            this._controlPopulation.lowerSpeed();
         });
     }
 

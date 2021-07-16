@@ -26,14 +26,13 @@ class ControlPopulation {
 
     start() : void {
         this._isPlaying = true;
-        let control = this;
 
-        setTimeout(function tick() {
-            if (control._isPlaying) {
-                control._game.createNewGeneration();
-                setTimeout(tick, speedToDelay[control._speed]);
+        setTimeout(function tick(this: ControlPopulation) {
+            if (this._isPlaying) {
+                this._game.createNewGeneration();
+                setTimeout(tick.bind(this), speedToDelay[this._speed]);
             }
-        }, speedToDelay[control._speed]);
+        }.bind(this), speedToDelay[this._speed]);
     }
 
 
@@ -59,6 +58,10 @@ class ControlPopulation {
             this._speed--;
             this._game.updateSpeedInfo(this._speed);
         }
+    }
+
+    isPlaying() : boolean {
+        return this._isPlaying;
     }
 }
 

@@ -1,7 +1,6 @@
 class Cell {
     protected _isAlive: boolean;
     protected _age: number;
-    protected _neighborsCount: number | undefined;
     color: string;
     readonly x: number;
     readonly y: number;
@@ -9,7 +8,6 @@ class Cell {
     constructor(x: number, y: number, isAlive: boolean, age : number = 0) {
         this._isAlive = isAlive;
         this._age = age;
-        this._neighborsCount = undefined;
         this.x = x;
         this.y = y;
         this.color = this.getColor();

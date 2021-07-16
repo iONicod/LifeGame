@@ -2,6 +2,8 @@ import GameField from "./GameField.js";
 import Cell from "./Cell.js";
 import ControlPopulation from "./ControlPopulation.js";
 import ControlButtons from "./ControlButtons.js";
+import DrawButtons from "./DrawButtons.js";
+import {DrawFigure} from "./DrawFigure";
 
 class Game {
     protected _gameField : GameField;
@@ -10,15 +12,18 @@ class Game {
     protected _generationNumber: number;
     protected _controlPopulation : ControlPopulation;
     protected _controlButtons : ControlButtons;
+    protected _drawButtons: DrawButtons;
+    protected _currentFigure: DrawFigure | undefined;
 
     run(width: number, height: number) : void {
-        this._gameField = new GameField(width, height);
+        this._gameField = new GameField(width, height, this);
         this.initArray();
         let cellsCount = this._gameArray.length * this._gameArray[0].length;
         this.addLives(Math.round(cellsCount * 0.2));
         this._generationNumber = 1;
         this._controlPopulation = new ControlPopulation(this);
         this._controlButtons = new ControlButtons(this, this._controlPopulation);
+        this._drawButtons = new DrawButtons(this);
     }
 
     private initArray() : void {
@@ -48,6 +53,13 @@ class Game {
             cell.becomeAlive();
         }
         this._gameField.draw(this._gameArray);
+    }
+
+    killAllLives() {
+        this.initArray();
+        this._gameField.clear();
+        this._generationNumber = 1;
+        this.updateGenerationInfo();
     }
 
     static getRandomNumberInRange(min, max) : number {
@@ -89,11 +101,29 @@ class Game {
     start() : void {
         this._controlPopulation.start();
         this._controlButtons.turnStartStage();
+        this._drawButtons.hide();
     }
 
     pause() : void {
         this._controlPopulation.pause();
         this._controlButtons.turnPauseStage();
+        this._drawButtons.show();
+    }
+
+    getCurrentFigure() {
+        return this._currentFigure;
+    }
+
+    setCurrentFigure(figure: DrawFigure) {
+        this._currentFigure = figure;
+    }
+
+    getGameArray() {
+        return this._gameArray;
+    }
+
+    isPlaying() {
+        return this._controlPopulation.isPlaying();
     }
 
     reset() : void {
@@ -105,6 +135,7 @@ class Game {
         let cellsCount = this._gameArray.length * this._gameArray[0].length;
         this.addLives(Math.round(cellsCount * 0.2));
         this.updateGenerationInfo();
+        this._drawButtons.show();
     }
 }
 
