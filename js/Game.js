@@ -2,15 +2,17 @@ import GameField from "./GameField.js";
 import Cell from "./Cell.js";
 import ControlPopulation from "./ControlPopulation.js";
 import ControlButtons from "./ControlButtons.js";
+import DrawButtons from "./DrawButtons.js";
 class Game {
     run(width, height) {
-        this._gameField = new GameField(width, height);
+        this._gameField = new GameField(width, height, this);
         this.initArray();
         let cellsCount = this._gameArray.length * this._gameArray[0].length;
         this.addLives(Math.round(cellsCount * 0.2));
         this._generationNumber = 1;
         this._controlPopulation = new ControlPopulation(this);
         this._controlButtons = new ControlButtons(this, this._controlPopulation);
+        this._drawButtons = new DrawButtons(this);
     }
     initArray() {
         let columnsAmount = this._gameField.widthPx / this._gameField.lifeSize;
@@ -35,6 +37,12 @@ class Game {
             cell.becomeAlive();
         }
         this._gameField.draw(this._gameArray);
+    }
+    killAllLives() {
+        this.initArray();
+        this._gameField.clear();
+        this._generationNumber = 1;
+        this.updateGenerationInfo();
     }
     static getRandomNumberInRange(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -69,10 +77,24 @@ class Game {
     start() {
         this._controlPopulation.start();
         this._controlButtons.turnStartStage();
+        this._drawButtons.hide();
     }
     pause() {
         this._controlPopulation.pause();
         this._controlButtons.turnPauseStage();
+        this._drawButtons.show();
+    }
+    getCurrentFigure() {
+        return this._currentFigure;
+    }
+    setCurrentFigure(figure) {
+        this._currentFigure = figure;
+    }
+    getGameArray() {
+        return this._gameArray;
+    }
+    isPlaying() {
+        return this._controlPopulation.isPlaying();
     }
     reset() {
         this._controlPopulation.reset();
@@ -83,6 +105,7 @@ class Game {
         let cellsCount = this._gameArray.length * this._gameArray[0].length;
         this.addLives(Math.round(cellsCount * 0.2));
         this.updateGenerationInfo();
+        this._drawButtons.show();
     }
 }
 export default Game;

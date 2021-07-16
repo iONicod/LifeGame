@@ -18,13 +18,12 @@ class ControlPopulation {
     }
     start() {
         this._isPlaying = true;
-        let control = this;
         setTimeout(function tick() {
-            if (control._isPlaying) {
-                control._game.createNewGeneration();
-                setTimeout(tick, speedToDelay[control._speed]);
+            if (this._isPlaying) {
+                this._game.createNewGeneration();
+                setTimeout(tick.bind(this), speedToDelay[this._speed]);
             }
-        }, speedToDelay[control._speed]);
+        }.bind(this), speedToDelay[this._speed]);
     }
     pause() {
         this._isPlaying = false;
@@ -45,6 +44,9 @@ class ControlPopulation {
             this._speed--;
             this._game.updateSpeedInfo(this._speed);
         }
+    }
+    isPlaying() {
+        return this._isPlaying;
     }
 }
 export default ControlPopulation;

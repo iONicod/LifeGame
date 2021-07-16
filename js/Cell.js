@@ -2,7 +2,6 @@ class Cell {
     constructor(x, y, isAlive, age = 0) {
         this._isAlive = isAlive;
         this._age = age;
-        this._neighborsCount = undefined;
         this.x = x;
         this.y = y;
         this.color = this.getColor();
