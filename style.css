@@ -33,6 +33,15 @@ body {
     margin-top: 30px;
 }
 
+.control-panel--draw {
+    width: 80px;
+}
+
+.control-panel--draw > .control-button {
+    font-size: 0;
+    height: 60px;
+}
+
 .control-button {
     padding: 15px 5px;
     margin: 10px 0;
@@ -43,6 +52,7 @@ body {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 2px;
+    cursor: pointer;
 }
 
 .control-button:disabled {
@@ -71,6 +81,37 @@ body {
     background-color: royalblue;
 }
 
+.button-spray {
+    background: #f596ff url("icons/spray.png") center no-repeat;
+    background-size: 50%;
+}
+
+.button-clear {
+    background-color: #ff5c5c;
+    background-image: url("icons/garbage.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
+}
+
+.button-figure1 {
+    background-color: palevioletred;
+    background-image: url("icons/goal.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40%;
+}
+.button-figure2 {
+    background-color: goldenrod;
+    background-image: url("icons/border.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+}
+
+.inactiveDrawButton {
+    background-color: #bfdce7;
+}
 
 .game-info {
     margin: 5px;
@@ -83,4 +124,8 @@ body {
     color: royalblue;
     font-weight: bold;
     margin: 5px 5px;
+}
+
+.hidden {
+    visibility: hidden;
 }
